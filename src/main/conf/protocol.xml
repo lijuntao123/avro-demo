@@ -1,0 +1,207 @@
+{
+  "protocol" : "WebProtocol",
+  "namespace" : "com.eastsoft.avro.demo.proto2",
+  "doc" : "* An protocol define in Avro IDL",
+  "types" : [ {
+    "type" : "record",
+    "name" : "GetDevicesReq",
+    "doc" : "* pull device request",
+    "fields" : [ {
+      "name" : "aids",
+      "type" : [ "null", {
+        "type" : "array",
+        "items" : "long"
+      } ],
+      "doc" : "* aid list of need pull device,if aid list is null then pull all device"
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "PlcDev",
+    "doc" : "*  physical device",
+    "fields" : [ {
+      "name" : "aid",
+      "type" : "long"
+    }, {
+      "name" : "name",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "roomCode",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "channel",
+      "type" : "int",
+      "doc" : "*1:channel 1,2:channel 2,..."
+    }, {
+      "name" : "status",
+      "type" : [ "null", {
+        "type" : "map",
+        "values" : {
+          "type" : "string",
+          "java-class" : "java.lang.String"
+        },
+        "java-key-class" : "java.lang.String",
+        "java-class" : "java.util.HashMap"
+      } ],
+      "doc" : "* save physical device status data ,it's key is defined in ConstantUtil class"
+    }, {
+      "name" : "sid",
+      "type" : [ "null", "int" ]
+    }, {
+      "name" : "category",
+      "type" : [ "null", "long" ]
+    }, {
+      "name" : "categorySubjoin",
+      "type" : [ "null", "int" ]
+    }, {
+      "name" : "join",
+      "type" : [ "null", "boolean" ]
+    }, {
+      "name" : "descr",
+      "type" : [ "null", {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      } ]
+    }, {
+      "name" : "password",
+      "type" : [ "null", {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      } ]
+    }, {
+      "name" : "registerProp",
+      "type" : [ "null", "int" ]
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "VirtualDev",
+    "doc" : "* virtual device",
+    "fields" : [ {
+      "name" : "id",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "name",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "typeId",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      },
+      "doc" : "* virtual device typeId,it's is defined in DdeviceType class of school-sdk-comm"
+    }, {
+      "name" : "roomCode",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "plcDevices",
+      "type" : [ "null", {
+        "type" : "array",
+        "items" : "PlcDev"
+      } ]
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "GetDevicesResp",
+    "doc" : "* server response",
+    "fields" : [ {
+      "name" : "virtualDevices",
+      "type" : [ "null", {
+        "type" : "array",
+        "items" : "VirtualDev"
+      } ]
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "GetRoomInfoReq",
+    "doc" : "* pull room request",
+    "fields" : [ {
+      "name" : "roomIds",
+      "type" : [ "null", {
+        "type" : "array",
+        "items" : "string"
+      } ]
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "PlcRoom",
+    "doc" : "* room object of server reply",
+    "fields" : [ {
+      "name" : "roomCode",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "roomName",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "roomType",
+      "type" : "int",
+      "doc" : "*1:classroom,2:office"
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "GetRoomInfoResp",
+    "doc" : "* response of server",
+    "fields" : [ {
+      "name" : "rooms",
+      "type" : [ "null", {
+        "type" : "array",
+        "items" : "PlcRoom"
+      } ]
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "RequestLogin",
+    "fields" : [ {
+      "name" : "username",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    }, {
+      "name" : "password",
+      "type" : {
+        "type" : "string",
+        "java-class" : "java.lang.String"
+      }
+    } ]
+  }, {
+    "type" : "enum",
+    "name" : "LoginResult",
+    "symbols" : [ "WEB_LOGIN_SUCCESS", "ACCOUNT_VERIFICATION_FAILED" ]
+  }, {
+    "type" : "record",
+    "name" : "ResponseLogin",
+    "fields" : [ {
+      "name" : "loginResult",
+      "type" : "LoginResult"
+    } ]
+  } ],
+  "messages" : {
+    "pullDevice" : {
+      "request" : [ {
+        "name" : "getDevicesReq",
+        "type" : "GetDevicesReq"
+      } ],
+      "response" : "GetDevicesResp"
+    }
+  }
+}

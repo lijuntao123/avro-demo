@@ -1,0 +1,21 @@
+@namespace("com.eastsoft.avro.demo.avdl")
+protocol ProtocolName{
+
+	record User{
+	  string id;
+		string name;
+		int age;
+		string address;
+	}
+	
+	record Role{
+		string type=0;
+		string roleName;		
+	}
+	
+	enum TYPE{
+		ADMIN,MANGER
+	}
+	
+	fixed MD5(16);
+}

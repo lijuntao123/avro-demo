@@ -1,0 +1,10 @@
+{"namespace": "com.eastsoft.avro.demo.proto1",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "age",  "type": ["int", "null"]},
+     {"name": "number", "type": ["string", "null"]},
+     {"name": "address", "type": ["string", "null"]}
+ ]
+}

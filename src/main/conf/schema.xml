@@ -1,0 +1,12 @@
+{"namespace": "com.eastsoft.avro.demo.schema",
+ "type": "record",
+ "name": "Student",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "age",  "type": "int"},     
+     {"name": "number", "type": ["string", "null"]},
+     {"name": "address", "type": ["string", "null"]},
+     {"name": "phone", "type": ["string", "null"]} 
+     
+ ]
+}
